@@ -31,26 +31,27 @@ class MyApp extends StatelessWidget {
         }),
       ],
       child: MaterialApp(
-          title: "myApp",
-          debugShowCheckedModeBanner: false,
-          home: StreamBuilder(
-            stream: FirebaseAuth.instance.authStateChanges(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(
-                    child: CircularProgressIndicator(
-                  color: Colors.white,
-                ));
-              } else if (snapshot.hasError) {
-                return showSnackBar(context, "Something went wrong");
-              } else if (snapshot.hasData) {
-                // return VerifyEmailPage();
-                return Home(); // home() OR verify email
-              } else {
-                return Login();
-              }
-            },
-          )),
+        title: "myApp",
+        debugShowCheckedModeBanner: false,
+        home: StreamBuilder(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                  child: CircularProgressIndicator(
+                color: Colors.white,
+              ));
+            } else if (snapshot.hasError) {
+              return showSnackBar(context, "Something went wrong");
+            } else if (snapshot.hasData) {
+              // return VerifyEmailPage();
+              return Home(); // home() OR verify email
+            } else {
+              return Login();
+            }
+          },
+        ),
+      ),
     );
   }
 }
